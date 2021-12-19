@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+.circle-btn{
+    outline: none;
+    background: none;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+.circle-btn:hover{
+    transform: scale(1.2);
+}
+.circle-btn:active{
+    transform: scale(1.5);
+}
+.circle-btn span{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    will-change: transform;
+    /* permet de prevenir le navigateur que le texte (emoji considere comme texte) risque de changer notamment ici avec le scale et donc il l optimise pour eviter les bugs   ATTENTION will-change est penalisant en ressources donc a n'utiliser que pour les changements de ploice avec scale */
+}
+svg{
+transform: rotate(-90deg);
+}
+.bg-svg{
+    stroke: #b8b8b834;
+    stroke-width: 3;
+}
+.filled{
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-dasharray: 1;
+    /* cela permet de creer des pointilles comme on a mis pathLength=1 dans svg donc 100% la si on met met 0.1 par exemple on aura 10% plein 10% vide ect.  si on met 1 on aura un pointille vide et un pointille plein de 100% superposé*/
+    stroke-dashoffset: 1;
+    /* cela permet de decale le ponitille plein de 100%  si on met 0.1 de 10% etc  pour faire apparaitre le pointille vide */
+    transition: stroke-dashoffset 0.4s ease-in-out;
+}
+.circle-btn:hover .filled{
+    stroke-dashoffset: 0;
+}
